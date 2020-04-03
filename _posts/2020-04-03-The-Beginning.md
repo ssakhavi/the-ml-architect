@@ -1,12 +1,17 @@
 ---
-layout: page
-title: About Me
-permalink: /about/
+toc: true
+layout: post
+description: The first post to descible why I started the blog
+categories: [MLArchitect,Start]
+title: The Beginning
 ---
 
-My name is Siavash(See-aw-vash) Sakhavi.
+Coming Soon...
 
-Currently I'm the Lead AI Scientist at KroniKare Pte Ltd in Singapore.
+
+
+
+
 
 
 
