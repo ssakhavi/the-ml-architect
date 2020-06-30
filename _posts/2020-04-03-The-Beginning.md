@@ -14,7 +14,7 @@ When I entered my PhD in 2013, it was the year when the AlexNet came out and the
 
 Now, lonmg story short: I am a person that likes to think meta and design software. When I entered the production ML world, I didn't know about design patterns, agile, kanban, XP, software architecture and many other concepts a person must know to do professional softare development. Comin to know about all these things, it hit my mind that what do I want to do for my career? Where do I see myself in a few years time. 
 
-After some research and surfing the web, I came across an interesting paper ["Machine Learning Architectureand Design Patterns"](http://www.washi.cs.waseda.ac.jp/wp-content/uploads/2019/12/IEEE_Software_19__ML_Patterns.pdf). This paper was a real eye-opener for me and I decided that maybe, this is the direction I want to go towards: becoming an Machine Learning Architect. 
+After some research and surfing the web, I came across an interesting paper ["Machine Learning Architecture and Design Patterns"](http://www.washi.cs.waseda.ac.jp/wp-content/uploads/2019/12/IEEE_Software_19__ML_Patterns.pdf). This paper was a real eye-opener for me and I decided that maybe, this is the direction I want to go towards: becoming an Machine Learning Architect. 
 
 
 Now as an architect, one of the first things is to understand is that what does an software architect do? and how do we translate the practices of software architecture design to machine learning problems. 
