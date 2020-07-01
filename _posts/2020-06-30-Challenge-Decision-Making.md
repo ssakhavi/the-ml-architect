@@ -4,7 +4,7 @@ layout: post
 description: The challenge of making decisions with the existence of different tools
 categories: [MLArchitect, Tools, Decisions]
 title: "Challenge: Decision Making"
-comment: true
+comments: true
 ---
 
 In this blog I'm going to discuss one of the most difficult challenge that any architect will come across in their path to becoming professional: deciding on design and toold choices. For myself, this challenge reoccurs more and more often becuase of my own tendancy to making sure that my design is right and that I'm using the right tools. Maybe it's better that I delve into what I mean with an example.
