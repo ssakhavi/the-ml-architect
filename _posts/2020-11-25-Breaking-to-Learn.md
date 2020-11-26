@@ -1,39 +1,35 @@
 ---
 toc: false
 layout: post
-description: The challenge of making decisions with the existence of different tools
-categories: [MLArchitect, Tools, Decisions]
-title: "Challenge: Decision Making"
+description: How breaking the code on purpose can lead to learning where in the code there are problems.
+categories: [MLArchitect,Experience]
+title: "Breaking the Code to Learn"
 comments: true
 ---
 
-In this blog I'm going to discuss one of the most difficult challenge that any architect will come across in their path to becoming professional: deciding on design and toold choices. For myself, this challenge reoccurs more and more often becuase of my own tendancy to making sure that my design is right and that I'm using the right tools. Maybe it's better that I delve into what I mean with an example.
 
-## Choosing a high level PyTorch tool
+I've started a new job at [AI Singapore](www.aisingapore.org). The nature of the job is in a way that I have to mentor people and guide them to be better AI Engineers. 
 
-It was around a two months ago when I was given new data to work with and I was tasked to train a segmentation model on the data. The task was simple: we have class A which is our desired class and everything else is background. This seems very simple and straightforward until a person like me starts thinking about how I can make the whole thing in the best way possible.
+That's why I think my blog posts will be more relevant and useful.
 
-I had done this experiment before a year back and since then, I knew there were new tools that could be used to bring more "structure" into my code. So I started searching.
+Today, I want to touch upon a topic that came to my mind when I was thinking about how to teach people whether there ML system is robust enough or not. 
 
-After some searching I came across a few frameweorks which are built on top of PyTorch and are designed to make life easier for those who don't want to have a lot of boilerplate code. You can find almost all of them in the [PyTorch EcoSystem page](https://pytorch.org/ecosystem/). After finding these amazingly well-designed frameworks, I had to make the tough decision: which one should I use.
+When I was in my PhD, I would browse around to learn new stuff and one of the most amazing website I came across to learn new programming languages was "Learn X the Hard Way". At that time *X* was **C** for me: CUDA had just gained popularity and because CUDA is mainly written in C and was keen in understanding parallel programming on GPUs, I decided to learn some C via the mentioned website. The website has changed since then ([link](https://learncodethehardway.org/)) and most of the material which were free need to be purchased now.
 
-## Narrowing it down
+The way that the author of the learning course would teach the language was ineteresting: First, he would introduce a concept and explain how that concept is used for the C language. But later, he would ask to modify different places of the code and make the code *break*. This breaking of the code would result in an error message. By asking to break the code, the learners would be able to identify  error messages corresponding to different problems that would be raised in different situations.
 
-Here it got a bit tricky: I was trying to find something to use which was easy to plug into my current code and at the same time, had structure. My philosophy is that a good framework is a framework which enforces structure. That's why after looking at the examples and source code, I narrowed down my options to two: **PyTorch Lightning (PL)** and **Catalyst**.
+Now, When I was thinking about robustness in machine learning and how to make sure the code is written in a way that it doesn't crash, I came up with this solution in my mind: What if we modify some parts of the configuration or the data to see whether the pipeline is working or not and whether the different parts of the code have good handling of unexpected inputs of configurations. 
 
-Initially, I had a tough time; Both frameworks are amazing and they cover a lot of the boilerplate code and give some degrees of autmation. Catalysy even has a example on how to use their framework for segmentation. But in order to come up with a decision, I decided to to implement the segmentation algorithm in both frameworks.
+You could say that this sounds a lot like testing. I would say: yes! usually for test we check the functionality and whether for a certain input, the output is okay. Eventually, breaking the code will lead to writing tests and when you become more experienced, you know what tests you need to write for your code.
 
-One of the things that was intriguing about PL and eventually led to me deciding on this framework, was the way it was implemented: The whole framework was a python class which needed its abstract methods to be populated based on the problem in hand. This was exactly what I was looking for. After populating the class (PL module), a simple method was executed with the intended parameters and logging methods. This really helps with making the training modular as possible, which is one of the needs for a flexible architecture. I saw this benefit when I tried mixing [hydra](https://hydra.cc/) with my PL code. It was supper easy because the parameter values were already being passed as a dicitonary and I just needed to pass them as `DictConfig` (the type of the Hydra parameter dictionary based on OmegaConf).
+Also, you might want to look at this as an attack on the network to check whether the code has covered the different scenarios of the configuration and data input.
 
-Then I added MLFlow into the mix. This was another reason I selected PL: It had a built-in MLFlow logger. By adding MLFlow, I found a [bug](https://github.com/PyTorchLightning/pytorch-lightning/issues/2058) which most likely was spotted because of the use of Hydra and MLFlow together. This resulted in a [PR](https://github.com/PyTorchLightning/pytorch-lightning/pull/2216). I really don't know if it was a bug or not because it was possible that upgrading the versions of my python packages would solve the problem, but they updated the code in a way that solved it entirely.
+Let's talk about an example: One of the mistakes that I have made many times, during my PhD and my KK days, is the matter of reading data based on a certain pattern ( i.e. asusming the the files are in sequence). This isn't true in most of the times. One way to break the code in this case is to remove a data point manually and see if the data pipeline still works.
 
-## Takeaways
+Actually, I've realized that pytorch-lightning does some kind of validation before it starts training the data to see whether the config, input and the model match. 
 
-My Takeaways from this experience:
 
-- Believe in a philosophy or an ideal regarding how code should look like.
-- Narrow down options by intially reading through the documents and sample code
-- After narrowing down, impelement the raw version of your code in the options you have and see the benefits and caveats
-- Don't be shy to submit issues or PRs on GitHub (I submitted a PR, panicked and deleted my code and one of the owners asked that why I did that)
+Takeaway:
 
-Take care.
+ * Sometimes you need to break the code to understand the problem and design your code in a better way.
+ * Don't write your code and assume because it's working, you don't have any bugs. Bugs won't show if you don't give your code a bit of a shake. 
