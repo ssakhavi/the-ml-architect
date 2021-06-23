@@ -37,7 +37,7 @@ Skills and Achievements:
 * Actively involved as a product manager in the software project development.
 * Trained hundreds of nurses for the use of the KroniKare wound scanner application
 
-### Acedemic Background:
+## Acedemic Background:
 
 I was a Biomedical Engineering (Bio-Electrics) student at Amirkabir university of technology during my bachelors. My Project Supervisor during this time was Dr.VahidReza Nafisi. My focus was designing and developing a system for recording and analyzing wrist pulse signals based on traditional Iranian medicine. 
 
